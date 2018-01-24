@@ -5,10 +5,16 @@ import threading
 import string
 
 import os
+import sys
 import subprocess
 
 #pip install python-slugify
 from slugify import slugify
+
+port = 8888
+if len(sys.argv) > 1:
+  port = sys.argv[1]
+
 
 class MainHandler(tornado.web.RequestHandler):
   def get(self):
@@ -52,7 +58,7 @@ def make_app():
 
 if __name__ == "__main__":
     app = make_app()
-    app.listen(8888)
+    app.listen(port)
     tornado.ioloop.IOLoop.current().start()
 
 
